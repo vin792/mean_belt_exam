@@ -1,0 +1,17 @@
+<h5>Current Bids</h5>
+<table class="table table-striped">
+  <tr>
+    <th>User</th>
+    <th>Bid</th>
+  </tr>
+  <tr *ngFor="let bid of bids">
+    <td>{{bid.username}}</td>
+    <td>{{bid.bid}}</td>
+  </tr>
+  <form>
+      <div class="form-group">
+          <label for="search">Filter Bids</label>
+          <input type="text" [(ngModel)] = "search" name="mysearch" (input) = "filterTable(mysearch.value)" class="form-control" #mysearch>
+      </div>
+  </form>
+</table>

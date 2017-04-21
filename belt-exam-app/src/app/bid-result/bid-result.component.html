@@ -1,0 +1,31 @@
+<div class="container-fluid" *ngIf="validLogin.status">
+  <div class="row" id="header">
+      <div class="col-sm-6">
+        <h1>{{validLogin.username}} ended the bid</h1>
+      </div>
+      <div class="col-sm-offset-4 col-sm-2">
+        <br>
+        <div class="btn-group">
+          <button class="btn btn-default" (click) = "logout()">Logout</button>
+          <button (click) = "restartBids()" class="btn btn-info">Start Bid</button>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Highest bidder per product</h3>
+      <div class="col-sm-4">
+        <div class="panel panel-default" *ngFor="let product of products">
+          <div class="panel-body">
+            <p><strong>Name:</strong> {{product.name}}</p>
+            <p><strong>Winner:</strong> {{product.highBid.username}}</p>
+            <p><strong>Winning Bid:</strong> {{product.highBid.bid}}</p>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="!validLogin.status">
+  <h3>Not Logged In</h3>
+</div>

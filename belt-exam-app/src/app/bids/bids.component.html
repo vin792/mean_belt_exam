@@ -1,0 +1,34 @@
+<div class="container-fluid" *ngIf="validLogin.status">
+  <div class="row" id="header">
+      <div class="col-sm-6">
+        <h1>Bid Now!</h1>
+      </div>
+      <div class="col-sm-offset-4 col-sm-2">
+        <br>
+        <div class="btn-group">
+          <button class="btn btn-default" (click) = "logout()">Logout</button>
+          <button (click) = "endBid()" class="btn btn-info">End Bids</button>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="alert alert-danger" *ngIf="!endBidValidation.status">
+          {{endBidValidation.message}}
+      </div>
+      <div *ngFor="let product of products; let i = index">
+        <div class="col-sm-3" *ngIf="i == 0">
+          <app-bid-product [product] = "product" [myUsername] = "validLogin.username" (newBidAdded) = "updateProducts()"></app-bid-product>
+          <app-bid-list [product] = "product"></app-bid-list>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1" *ngIf="i != 0">
+          <app-bid-product [product] = "product" [myUsername] = "validLogin.username" (newBidAdded) = "updateProducts()"></app-bid-product>
+          <app-bid-list [product] = "product"></app-bid-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="!validLogin.status">
+  <h3>Not Logged In</h3>
+</div>
